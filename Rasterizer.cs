@@ -9,9 +9,14 @@ public class Rasterizer
     {
         Vector3[] ColorData = new Vector3[ResX * ResY];
 
+        // Initialize ColorData to all black
+        for(int i = 0; i < ResX * ResY; i++){
+            ColorData[i] = new Vector3(0f, 0f, 0f);
+        }
+
         // Draw vertices
         for(int i = 0; i < Vertices.Length; i++){
-            int Index = 0;
+            int Index = (int)System.Math.Round((float)ResY / 2f + Vertices[i].Y) * ResX + (int)System.Math.Round((float)ResX / 2f + Vertices[i].X);
             if(Index >= 0 && Index < ResX * ResY){
                 ColorData[Index] = new Vector3(1f, 1f, 1f);
             }
@@ -34,7 +39,7 @@ public class Rasterizer
         public float Y = 0f;
         public float Z = 0f;
 
-        public Vector3(float VX, float VY, float VZ){
+        public Vector3(float VX = 0f, float VY = 0f, float VZ = 0f){
             X = VX;
             Y = VY;
             Z = VZ;
