@@ -2,11 +2,12 @@ public class Rasterizer
 {
     public int ResX = 640;
     public int ResY = 360;
-    Vector3[] ColorData;
+    Vector3 CameraPos;
+    Vector3 CameraForward;
 
-    public Vector3[] Rasterize(Vector3 CameraPos, Vector3 CameraForward, Vector3[] Vertices)
+    public Vector3[] Rasterize(Vector3[] Vertices)
     {
-        ColorData = new Vector3[ResX * ResY];
+        Vector3[] ColorData = new Vector3[ResX * ResY];
 
         // Draw vertices
         for(int i = 0; i < Vertices.Length; i++){
@@ -17,6 +18,14 @@ public class Rasterizer
         }
 
         return ColorData;
+    }
+
+    public Rasterizer(int Width, int Height, Vector3 Position, Vector3 Forward)
+    {
+        ResX = Width;
+        ResY = Height;
+        CameraPos = Position;
+        CameraForward = Forward;
     }
 
     public class Vector3
